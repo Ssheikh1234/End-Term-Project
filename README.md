@@ -6,7 +6,112 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
-  - _TODO: Enter the playbook file._
+'''
+  ---
+- name: Configure Elk VM with Docker
+  hosts: elkservers
+  become: True
+  tasks:
+ 
+  - name: Install Packages docker.io
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: docker.io
+      state: present
+ 
+  - name: Install Packages python-pip
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: python3-pip
+      state: present
+ 
+  - name: Install docker pip Packages 
+    pip:
+      name: docker
+      state: present
+
+  - name: Set RAM usage
+    ansible.posix.sysctl:
+      name: vm.max_map_count
+      value: '262144'
+      state: present
+
+  - name: Download and Configure docker container elk
+    docker_container: 
+      name: elk
+      image: sebp/elk:761
+      state: started
+      published_ports: 5601:5601,9200:9200,5044:5044
+  
+  - name: Enable docker sercive
+    systemd:
+      name: docker
+      enabled: yes
+ '''
+ 
+ '''
+ ---
+- name: installing and launching filebeat
+  hosts: webservers
+  become: true
+  tasks:
+
+  - name: download filebeat deb
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
+
+ 
+  - name: install filebeat deb
+    command: sudo dpkg -i filebeat-7.6.1-amd64.deb
+
+  - name: drop in filebeat.yml 
+    copy:
+      src: /etc/ansible/roles/filebeat-config.yml
+      dest: /etc/filebeat/filebeat.yml
+
+  - name: enable and configure system module
+    command: sudo filebeat modules enable system
+
+  - name: setup filebeat
+    command: sudo filebeat setup
+
+  - name: start filebeat service
+    command: sudo service filebeat start
+'''
+
+'''
+---
+- name: Install metric beat
+  hosts: webservers
+  become: true
+  tasks:
+    # Use command module
+  - name: Download metricbeat
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+
+    # Use command module
+  - name: install metricbeat
+    command: sudo dpkg -i metricbeat-7.6.1-amd64.deb
+
+    # Use copy module
+  - name: drop in metricbeat config
+    copy:
+      src: /etc/ansible/roles/metricbeat-config.yml
+      dest: /etc/metricbeat/metricbeat.yml
+
+    # Use command module
+  - name: enable and configure docker module for metric beat
+    command: sudo metricbeat modules enable docker
+
+    # Use command module
+  - name: setup metric beat
+    command: sudo metricbeat setup
+
+    # Use command module
+  - name: start metric beat
+    command: sudo service metricbeat start
+'''
 
 This document contains the following details:
 - Description of the Topologu
