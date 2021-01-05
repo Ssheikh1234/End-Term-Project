@@ -53,9 +53,8 @@ Install-ELK.yml
  ```
  
  Filebeat-Playbook.yml
- 
- ```
- ---
+``` 
+  ---
 - name: installing and launching filebeat
   hosts: webservers
   become: true
@@ -81,11 +80,11 @@ Install-ELK.yml
 
   - name: start filebeat service
     command: sudo service filebeat start
-
+```
 
 Metricbeat-Playbook.yml
-
-```---
+```
+  ---
 - name: Install metric beat
   hosts: webservers
   become: true
