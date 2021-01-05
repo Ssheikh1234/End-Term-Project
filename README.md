@@ -193,7 +193,7 @@ Configure ELK VM with Docker:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![Alt text](https://github.com/Ssheikh1234/End-Term-Project/blob/main/Images/Screen%20Shot%202020-12-14%20at%209.48.15%20PM.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
