@@ -81,12 +81,11 @@ Install-ELK.yml
 
   - name: start filebeat service
     command: sudo service filebeat start
-```
+
 
 Metricbeat-Playbook.yml
 
-```
----
+```---
 - name: Install metric beat
   hosts: webservers
   become: true
@@ -124,7 +123,7 @@ This document contains the following details:
   - Beats in Use
   - Machines Being Monitored
 - How to Use the Ansible Build
-
+```
 
 ### Description of the Topology
 
