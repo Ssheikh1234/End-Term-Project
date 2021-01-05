@@ -114,6 +114,7 @@ Metricbeat-Playbook.yml
     # Use command module
   - name: start metric beat
     command: sudo service metricbeat start
+```
 
 This document contains the following details:
 - Description of the Topologu
@@ -122,7 +123,7 @@ This document contains the following details:
   - Beats in Use
   - Machines Being Monitored
 - How to Use the Ansible Build
-```
+
 
 ### Description of the Topology
 
