@@ -1,0 +1,43 @@
+---
+- name: Configure Elk VM with Docker
+  hosts: elkservers
+  become: True
+  tasks:
+ 
+  - name: Install Packages docker.io
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: docker.io
+      state: present
+ 
+  - name: Install Packages python-pip
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: python3-pip
+      state: present
+ 
+  - name: Install docker pip Packages 
+    pip:
+      name: docker
+      state: present
+
+  - name: Set RAM usage
+    ansible.posix.sysctl:
+      name: vm.max_map_count
+      value: '262144'
+      state: present
+
+  - name: Download and Configure docker container elk
+    docker_container: 
+      name: elk
+      image: sebp/elk:761
+      state: started
+      published_ports: 5601:5601,9200:9200,5044:5044
+  
+  - name: Enable docker sercive
+    systemd:
+      name: docker
+      enabled: yes
+
