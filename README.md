@@ -272,12 +272,22 @@ Install-ELK.yml
       enabled: yes
  ```
  
-Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
+Which file do you update to make Ansible run the playbook on a specific machine?
 
-   -Edit the /etc/ansible/host file to add webserver/elkserver IP addresses
+-Edit the /etc/ansible/host file to add webserver/elkserver IP addresses
 
- Which URL do you navigate to in order to check that the ELK server is running?
+How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+
+Which URL do you navigate to in order to check that the ELK server is running?
 
 	-http://52.247.28.248:5601/app/kinana
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+![Alt text](https://github.com/Ssheikh1234/End-Term-Project/blob/main/Images/Screen%20Shot%202020-12-14%20at%2010.00.03%20PM.png)
+
+![Alt text](https://github.com/Ssheikh1234/End-Term-Project/blob/main/Images/Screen%20Shot%202020-12-14%20at%2010.03.05%20PM.png)
+
+![Alt text](https://github.com/Ssheikh1234/End-Term-Project/blob/main/Images/Screen%20Shot%202020-12-16%20at%2010.06.50%20PM.png)
+
+![Alt text](https://github.com/Ssheikh1234/End-Term-Project/blob/main/Images/Screen%20Shot%202020-12-16%20at%2010.07.04%20PM.png)
+
+![Alt text](https://github.com/Ssheikh1234/End-Term-Project/blob/main/Images/Screen%20Shot%202020-12-16%20at%208.39.43%20PM.png)
